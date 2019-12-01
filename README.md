@@ -1,1 +1,1 @@
-# ImageDeection
+# ImageDetection
