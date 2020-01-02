@@ -1,9 +1,14 @@
 from nudity import Nudity
 
 nudity = Nudity()
-path = "C:\my_app\imageProcessing_FinalProject\\final\\111.jpg"
-print(nudity.has(path))
+path = r'C:\Users\Student\PycharmProjects\ImageDetection\images_for_testing\np3.jpg'
 # returns True or False
+is_offensive = nudity.has(path)
+# gives nudity / inappropriate content score between 0.0 - 1.0
+score = nudity.score(path)
 
-print(nudity.score(path))
-# gives nudity score between 0.0 - 1.0
+print(is_offensive)
+if score < 0.00000001:
+    score = 0.0
+print(score)
+
