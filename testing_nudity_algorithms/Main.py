@@ -5,7 +5,6 @@ import cv2
 
 def check_pornographic_content(image_path):
     nudity = Nudity()
-    
     # returns True or False
     is_offensive = nudity.has(image_path)
     # gives nudity / inappropriate content score between 0.0 - 1.0
@@ -31,7 +30,7 @@ def check_drugs_content(image_path):
 
 if __name__ == "__main__":
     # image path
-    path = r'C:\Users\Student\PycharmProjects\ImageDetection\images_for_testing\p3.jpg'
+    path = r'/images_for_testing/p3.jpg'
     image_data = [check_pornographic_content(path), check_drugs_content(path)]
     # for result in image_data:
     #   if result[0] == true:
