@@ -35,7 +35,7 @@ if __name__ == "__main__":
     # for result in image_data:
     #   if result[0] == true:
     blurred_image = blur_image(path)
-
+    # to be deleted
     # show the image
     plt.imshow(blurred_image)
     plt.show()
