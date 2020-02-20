@@ -33,7 +33,7 @@ def motorrun():
  
 
  
-    print("Now stop")
+    print ("Now stop")
     GPIO.output(Motor1E,GPIO.LOW)
     GPIO.output(Motor2E,GPIO.LOW)
  

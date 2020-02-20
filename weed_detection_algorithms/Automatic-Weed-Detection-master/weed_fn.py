@@ -1,15 +1,10 @@
 import cv2
 import numpy
 import time
-
-from comtypes.automation import _
-
-
 def detect_weed():
     camera = cv2.VideoCapture(0)
-    print("Taking image...")
-    img = camera.read()
-    # img="C:\my_app\ImageDetection\weed_detection_algorithms\Automatic-Weed-Detection-master\\13381168_882325588543265_2073766996_n.jpg"
+    print("image...")
+    _,img = "C:\my_app\ImageDetection\weed1.jpg"
     if _ is True:
         gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)            
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -28,5 +23,3 @@ def detect_weed():
         return asd
     return 0
 
-if __name__ == '__main__':
-    detect_weed()
