@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>10044.bmp</filename>
+	<path>/Users/temporaryuser/PycharmProjects/weapon_model/second_weapon_model/knives/images/POSITIVES_ALL/train/10044.bmp</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>100</width>
+		<height>100</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>knife</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>7</xmin>
+			<ymin>43</ymin>
+			<xmax>77</xmax>
+			<ymax>86</ymax>
+		</bndbox>
+	</object>
+</annotation>
