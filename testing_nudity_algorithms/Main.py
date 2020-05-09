@@ -1,3 +1,6 @@
+# this class is using the 'nudity' lib. its being used for detecting whether an image is porn, nudity or other human inappropriate content.
+# this class takes an image path and returns its offensiveness value (between 0-1),
+# it also blur the image in case its offensive
 from nudity import Nudity
 import matplotlib.pyplot as plt
 import cv2
@@ -24,18 +27,13 @@ def blur_image(image_path):
     return image
 
 
-def check_drugs_content(image_path):
-    return 0
-
-
 if __name__ == "__main__":
     # image path
-    path = r'/images_for_testing/p3.jpg'
-    image_data = [check_pornographic_content(path), check_drugs_content(path)]
-    # for result in image_data:
-    #   if result[0] == true:
-    blurred_image = blur_image(path)
-
+    path = r'/images_for_testing/image.jpg'
+    image_to_show = cv2.imread(image_path)
+    image_data = check_pornographic_content(path)
+    if image_data[0]:
+        image_to_show = blur_image(path)
     # show the image
-    plt.imshow(blurred_image)
+    plt.imshow(image_to_show)
     plt.show()
