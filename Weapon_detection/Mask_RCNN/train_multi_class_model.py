@@ -8,12 +8,13 @@ from Weapon_detection.Mask_RCNN.mrcnn.model import MaskRCNN
 from Weapon_detection.Mask_RCNN.mrcnn.utils import Dataset
 
 
-class KnifeDataset(Dataset):
+class ModelDataset(Dataset):
     # load the dataset definitions
     def load_dataset(self, dataset_dir, is_train=True):
         # define two class
-        self.add_class("dataset", 1, "knife")  # Change required
-        self.add_class("dataset", 2, "gun")  # Change required
+        self.add_class("dataset", 1, "knife")
+        self.add_class("dataset", 2, "gun")
+        self.add_class("dataset", 3, "weed")
         # define data locations
         images_dir = dataset_dir + "/images/"
         annotations_dir = dataset_dir + "/annots/"
@@ -34,7 +35,7 @@ class KnifeDataset(Dataset):
             ann_path = annotations_dir + image_id + '.xml'
             # add to dataset
             self.add_image('dataset', image_id=image_id, path=img_path, annotation=ann_path,
-                           class_ids=[0, 1, 2])  # 0:BG, 1:knife, 2:gun
+                           class_ids=[0, 1, 2])  # 0:BG, 1:knife, 2:gun, 3:weed
 
     # extract bounding boxes from an annotation file
     def extract_boxes(self, filename):
@@ -75,12 +76,15 @@ class KnifeDataset(Dataset):
             box = boxes[i]
             row_s, row_e = box[1], box[3]
             col_s, col_e = box[0], box[2]
-            if box[4] == 'knife':  # Change required #change this to your .XML file
-                masks[row_s:row_e, col_s:col_e, i] = 2  # Change required #assign number to your class_id
-                class_ids.append(self.class_names.index('knife'))  # Change required
+            if box[4] == 'knife':
+                masks[row_s:row_e, col_s:col_e, i] = 1
+                class_ids.append(self.class_names.index('knife'))
+            elif box[4] == 'gun':
+                masks[row_s:row_e, col_s:col_e, i] = 2
+                class_ids.append(self.class_names.index('gun'))
             else:
-                masks[row_s:row_e, col_s:col_e, i] = 1  # Change required
-            class_ids.append(self.class_names.index('gun'))  # Change required
+                masks[row_s:row_e, col_s:col_e, i] = 3
+                class_ids.append(self.class_names.index('weed'))
 
         return masks, asarray(class_ids, dtype='int32')
 
@@ -93,21 +97,21 @@ class KnifeDataset(Dataset):
 # define a configuration for the model
 class KnifeConfig(Config):
     # define the name of the configuration
-    NAME = "knife_cfg"
-    # number of classes (background + gun + knife)
-    NUM_CLASSES = 1 + 2
+    NAME = "model_cfg"
+    # number of classes (background + gun + knife + weed)
+    NUM_CLASSES = 1 + 3
     # number of training steps per epoch
     STEPS_PER_EPOCH = 90
 
 
 # prepare train set
-train_set = KnifeDataset()
-dataset_path = r'C:\Users\Admin\Desktop\ImageDetection\Weapon_detection\Mask_RCNN\knife_original'
+train_set = ModelDataset()
+dataset_path = r'C:\Users\Admin\Desktop\ImageDetection\Weapon_detection\Mask_RCNN\images'
 train_set.load_dataset(dataset_path, is_train=True)
 train_set.prepare()
 print('Train: %d' % len(train_set.image_ids))
 # prepare test/val set
-test_set = KnifeDataset()
+test_set = ModelDataset()
 test_set.load_dataset(dataset_path, is_train=False)
 test_set.prepare()
 print('Test: %d' % len(test_set.image_ids))
