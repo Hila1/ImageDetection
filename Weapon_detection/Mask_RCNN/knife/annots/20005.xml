@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>20005.jpg</filename>
+	<path>/Users/temporaryuser/PycharmProjects/ImageDetection/weapon_detection/weapon_model/Mask_RCNN/knives/images/20005.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>150</width>
+		<height>150</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>knife</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>29</xmin>
+			<ymin>32</ymin>
+			<xmax>119</xmax>
+			<ymax>120</ymax>
+		</bndbox>
+	</object>
+</annotation>
